@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>{{ "Evento de Lançamentos" }}</h1>
+  
+  <div class="upload-section">
+    <h2>Upload de Arquivo CSV</h2>
+    
+    <input 
+      type="file" 
+      accept=".csv" 
+      (change)="onFileSelected($event)"
+      class="file-input"
+    >
+    
+    <div *ngIf="selectedFile" class="file-info">
+      Arquivo selecionado: {{ selectedFile.name }}
+    </div>
+    
+    <div class="button-group">
+      <button 
+        (click)="uploadCsv()" 
+        [disabled]="!selectedFile || uploading"
+        class="btn-primary"
+      >
+        {{ uploading ? 'Processando...' : 'Processar CSV' }}
+      </button>
+      
+      <button 
+        (click)="clearCsvField()" 
+        [disabled]="uploading"
+        class="btn-secondary"
+        *ngIf="selectedFile || chatGptResponse || uploadSuccess || error"
+      >
+        Limpar
+      </button>
+    </div>
+    
+    <div *ngIf="uploadSuccess" class="success-message">
+      {{ uploadSuccess }}
+    </div>
+  </div>
+  
+  <div *ngIf="chatGptResponse" class="chatgpt-response">
+    <div class="response-header">
+      <h2>Análise do ChatGPT</h2>
+      <button 
+        (click)="resetAnalysis()" 
+        class="btn-secondary btn-small"
+        title="Limpar análise"
+      >
+        ✕
+      </button>
+    </div> 
+    <div *ngIf="analysisInfo" class="analysis-info">
+      {{ analysisInfo }}
+    </div> 
+    <pre class="markdown">{{ chatGptResponse }}</pre>
+  </div>
+</div>
