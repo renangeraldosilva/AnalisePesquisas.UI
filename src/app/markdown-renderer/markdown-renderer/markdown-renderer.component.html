@@ -1,0 +1,9 @@
+<div class="cards-container">
+  <div *ngFor="let card of cards" class="card">
+    <div class="card-header">
+      <div class="card-icon" [ngClass]="'icon-' + card.icon"></div>
+      <h3 class="card-title">{{ card.title }}</h3>
+    </div>
+    <div class="card-content" [innerHTML]="card.htmlContent"></div>
+  </div>
+</div>

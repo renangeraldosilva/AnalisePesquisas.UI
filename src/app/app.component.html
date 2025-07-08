@@ -53,6 +53,6 @@
     <div *ngIf="analysisInfo" class="analysis-info">
       {{ analysisInfo }}
     </div> 
-    <pre class="markdown">{{ chatGptResponse }}</pre>
+    <app-markdown-renderer [markdownContent]="chatGptResponse"></app-markdown-renderer>
   </div>
 </div>

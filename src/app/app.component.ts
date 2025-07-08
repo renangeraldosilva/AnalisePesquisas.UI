@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PesquisaService, Pesquisa } from './pesquisa.service';
+import { MarkdownRendererComponent } from './markdown-renderer/markdown-renderer/markdown-renderer.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MarkdownRendererComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -21,7 +22,6 @@ export class AppComponent {
   analysisInfo = ''; 
 
   constructor(private pesquisaService: PesquisaService) {}
-
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -54,6 +54,7 @@ export class AppComponent {
     this.analysisInfo = '';
     this.uploadSuccess = '';
     this.error = '';
+    this.clearCsvField();
   }
 
   uploadCsv() {
@@ -85,22 +86,5 @@ export class AppComponent {
         this.uploading = false;
       }
     });
-  }
-
-  getObjectEntries(obj: any): {key: string, value: any}[] {
-    if (!obj) return [];
-    return Object.entries(obj).map(([key, value]) => ({ key, value }));
-  }
-
-  isObject(value: any): boolean {
-    return value !== null && typeof value === 'object' && !Array.isArray(value);
-  }
-
-  formatObject(obj: any): string {
-    try {
-      return JSON.stringify(obj, null, 2);
-    } catch {
-      return String(obj);
-    }
   }
 }

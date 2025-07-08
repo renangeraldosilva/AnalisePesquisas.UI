@@ -90,9 +90,7 @@
 .chatgpt-response {
   margin-bottom: 30px;
   padding: 20px;
-  border: 1px solid #28a745;
   border-radius: 8px;
-  background-color: #1e2d1e;
 }
 
 .chatgpt-response h2 {
@@ -180,15 +178,4 @@
   color: #cccccc;
   text-align: center;
   padding: 20px;
-}
-
-.markdown {
-  white-space: pre-wrap;
-  background-color: #001f00;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  color: #d4d4d4;
-  overflow-x: auto;
 }
